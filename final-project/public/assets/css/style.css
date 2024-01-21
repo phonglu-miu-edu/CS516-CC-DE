@@ -2213,16 +2213,19 @@ body.loaded {
 .portfolio .item .cont .tag {
   font-size: 12px;
   padding: 4px 15px;
+  margin-right: 15px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 30px;
   margin-bottom: 15px;
   -webkit-transition: all .4s;
   -o-transition: all .4s;
   transition: all .4s;
+  display: inline;
 }
 
 .portfolio .item .cont h6 {
   font-weight: 500;
+  display: inline;
 }
 
 .portfolio .item .cont .arrow svg {
@@ -2512,7 +2515,7 @@ body.loaded {
 .swiper-controls.arrow-out .right {
   width: 50px;
   height: 50px;
-  line-height: 50px;
+  line-height: 46px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;

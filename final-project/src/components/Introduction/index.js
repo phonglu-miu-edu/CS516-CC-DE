@@ -38,7 +38,7 @@ const Introduction = () => {
                 </div>
                 <div className="col-lg-8 content main-bg">
                     <h1>I’m <span className="main-color">Phong Lu</span>,<br />
-                        Senior Full-Stack Engineer and <span className="bord">Technical Architect<i /></span></h1>
+                        Senior Full-Stack Developer and <span className="bord">Technical Architect<i /></span></h1>
                     <div className="status mt-80">
                         <div className="d-flex align-items-center">
                             <div className="mr-40">
@@ -55,7 +55,7 @@ const Introduction = () => {
                             {/*</div>*/}
                             <div>
                                 <div className="butn-presv">
-                                    <a href="#0" className="butn butn-md butn-bord radius-5 skew">
+                                    <a href="/assets/docs/Phong.Lu-Resume.docx" className="butn butn-md butn-bord radius-5 skew">
                                         <span>Download C.V</span>
                                     </a>
                                 </div>
