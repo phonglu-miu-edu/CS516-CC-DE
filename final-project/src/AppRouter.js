@@ -10,6 +10,7 @@ function AppRouter() {
         <div>
             <Routes>
                 <Route path="/blog" element={<Blog />} />
+                <Route path="/index.html" element={<Home />} />
                 <Route path="/" element={<Home />} />
                 <Route path="*" element={<PageNotFound />} />
             </Routes>

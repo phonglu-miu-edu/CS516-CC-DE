@@ -1,7 +1,7 @@
 const env = process.env;
 
 const Constants = {
-  BASE_URL: env.REACT_APP_BASE_URL
+  API_URL: env.REACT_APP_API_URL
 };
 
 export default Constants;

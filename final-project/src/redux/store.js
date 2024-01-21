@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reportSlice from "./slices/reportSlice";
+import postSlice from "./slices/postSlice";
 
 export const store = configureStore({
     reducer: {
-        report: reportSlice.reducer
+        post: postSlice.reducer
     }
 });
