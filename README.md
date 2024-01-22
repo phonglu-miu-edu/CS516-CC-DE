@@ -1,3 +1,6 @@
+## 01/22/2024
+- Complete the Contact form with validation and response feedback.
+
 ## 01/21/2024
 - Move Home data to Api.
 - Add Post page.
