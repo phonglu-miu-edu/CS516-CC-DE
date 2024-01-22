@@ -385,7 +385,7 @@ const Home = () => {
                     {/*</div>*/}
                 </div>
             </div>
-            <div className="gallery">
+            <div>
                 <RenderedWorks />
             </div>
         </div>
