@@ -214,7 +214,7 @@ const Home = () => {
                             <Link to="/#skills"><span>Skills</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/#works"><span>Experiences</span></Link>
+                            <Link to="/#experiences"><span>Experiences</span></Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/#blog"><span>Blog</span></Link>
@@ -369,7 +369,7 @@ const Home = () => {
 
     const Works = () => (
         <div className="sec-box portfolio section-padding" data-scroll-index="3">
-            <a id="works" />
+            <a id="experiences" />
             <div className="sec-head mb-30">
                 <div className="row">
                     <div className="col-lg-6">
@@ -397,7 +397,7 @@ const Home = () => {
                     <div className="row">
                         <div className="col-lg-7">
                             <h6 className="sub-title opacity-7 mb-15">Testimonials</h6>
-                            <h3>Trusted by <span className="main-color">Supervisors</span></h3>
+                            <h3>Trusted by <span className="main-color">Clients & Supervisors</span></h3>
                         </div>
                     </div>
                 </div>
