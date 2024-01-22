@@ -1,34 +1,26 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Autoplay } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import ArrowRight from "components/ArrowRight";
 import ArrowSwipe from "components/ArrowSwipe";
 import ArrowTopRight from "components/ArrowTopRight";
+import ContactForm from "components/ContactForm";
 import Introduction from "components/Introduction";
-import { resetContact } from "../../redux/slices/contactSlice";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllPosts } from "services/PostService";
 import { getAllSkills } from "services/SkillService";
 import { getAllTestimonials } from "services/TestimonialService";
 import { getAllWorks } from "services/WorkService";
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import './index.scss';
 import 'swiper/css';
 
 const Home = () => {
-    const initialContact = {
-        sent: false
-    };
-
-    const [contact, setContact] = useState(initialContact);
     const [posts, setPosts] = useState([]);
     const [skills, setSkills] = useState([]);
     const [testimonials, setTestimonials] = useState([]);
     const [works, setWorks] = useState([]);
     const sliderRef = useRef(null);
-    const { register, formState: { errors }, handleSubmit } = useForm();
-    const contactState = useSelector(state => state.contact);
     const postState = useSelector(state => state.post);
     const skillState = useSelector(state => state.skill);
     const testimonialState = useSelector(state => state.testimonial);
@@ -41,13 +33,6 @@ const Home = () => {
         dispatch(getAllTestimonials());
         dispatch(getAllWorks());
     }, [dispatch]);
-
-    useEffect(() => {
-        if (contactState.messageSent && contact.sent) {
-            setContact(initialContact);
-            resetContact();
-        }
-    }, [contactState]);
 
     useEffect(() => {
         if (postState.posts.length > 0) {
@@ -82,15 +67,6 @@ const Home = () => {
         if (!sliderRef.current) return;
         sliderRef.current.swiper.slideNext();
     }, []);
-
-    const onInputChange = (e, name) => {
-        contact[name] = e.target.value;
-        setContact({ ...contact });
-    }
-
-    const onContactSubmit = data => {
-        console.log(data);
-    };
 
     const RenderedSkills = () => skills.map(s => (
         <div className="col-md-6" key={s.logo}>
@@ -613,47 +589,7 @@ const Home = () => {
                 </div>
                 <div className="col-lg-7 valign">
                     <div className="full-width">
-                        <form onSubmit={handleSubmit(onContactSubmit)}>
-                            <div className="controls row">
-                                <div className="col-lg-4">
-                                    <div className="form-group mb-30">
-                                        <input {...register("name", { required: "Name is required" })} placeholder="Name *"
-                                                value={contact.name}
-                                                onChange={e => onInputChange(e, 'name')} />
-                                        {errors.name && <p role="alert">{errors.name.message}</p>}
-                                    </div>
-                                </div>
-                                <div className="col-lg-4">
-                                    <div className="form-group mb-30">
-                                        <input type="email" {...register("mail", { required: "Email is required" })} placeholder="Email *" />
-                                        {errors.mail && <p role="alert">{errors.mail.message}</p>}
-                                    </div>
-                                </div>
-                                <div className="col-lg-4">
-                                    <div className="form-group mb-30">
-                                        <input {...register("phone", { pattern: { value: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i, message: "Invalid phone" }})} placeholder="xxx-xxx-xxxx" />
-                                        {errors.phone && <p role="alert">{errors.phone.message}</p>}
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-group mb-30">
-                                        <input {...register("subject", { required: "Subject is required" })} placeholder="Subject *" />
-                                        {errors.subject && <p role="alert">{errors.subject.message}</p>}
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-group">
-                                        <textarea {...register("message", { required: "Message is required" })} placeholder="Message *" rows="4"></textarea>
-                                        {errors.message && <p role="alert">{errors.message.message}</p>}
-                                    </div>
-                                    <div className="mt-30">
-                                        <button type="submit">
-                                            <span className="text">Send A Message</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        <ContactForm />
                     </div>
                 </div>
             </div>

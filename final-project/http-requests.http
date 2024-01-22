@@ -1,8 +1,26 @@
+### CREATE CONTACT
+POST https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/contacts
+Content-Type: application/json
+
+{
+    "name": "Phong",
+    "email": "phonglu@me.net",
+    "phone": "",
+    "subject": "Friend request",
+    "message": "Hello"
+}
+
 ### GET POSTS
-GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/post
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/posts
 
 ### GET POST 1
-GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/post/1
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/posts/1
 
 ### GET SKILLS
-GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/skill
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/skills
+
+### GET TESTIMONIALS
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/testimonials
+
+### GET WORKS
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/works

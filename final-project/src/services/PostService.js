@@ -3,8 +3,8 @@ import axiosInstance from "./AxiosService";
 
 export const getAllPosts = createAsyncThunk(
   'posts/getAll',
-  async () => await axiosInstance.get('/post'));
+  async () => await axiosInstance.get('/posts'));
 
 export const getPostById = createAsyncThunk(
     'posts/getById',
-    async (id) => await axiosInstance.get(`/post/${id}`));
+    async (id) => await axiosInstance.get(`/posts/${id}`));

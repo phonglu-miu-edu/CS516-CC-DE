@@ -3,4 +3,4 @@ import axiosInstance from "./AxiosService";
 
 export const getAllTestimonials = createAsyncThunk(
   'testimonials/getAll',
-  async () => await axiosInstance.get('/testimonial'));
+  async () => await axiosInstance.get('/testimonials'));
