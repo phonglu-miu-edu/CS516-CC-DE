@@ -1,2 +1,8 @@
-# GET
+### GET POSTS
 GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/post
+
+### GET POST 1
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/post/1
+
+### GET SKILLS
+GET https://ar180mj8gd.execute-api.us-east-1.amazonaws.com/Project/skill

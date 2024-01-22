@@ -77,7 +77,7 @@ const Blog = () => {
                         <div className="box">
                             <div className="cont text-center">
                                 <span className="date"><i className="fas fa-calendar-alt mr-10 main-color"></i> {firstPost.date}</span>
-                                <h4><Link to={"/blog/" + firstPost.id}>{firstPost.title}</Link></h4>
+                                <h4><Link to={"/post/" + firstPost.id}>{firstPost.title}</Link></h4>
                                 <div className="row justify-content-center mt-15">
                                     <div className="col-lg-8">
                                         <p>{firstPost.summary}</p>
@@ -86,7 +86,7 @@ const Blog = () => {
                             </div>
                             <div className="info d-flex align-items-center">
                                 <div className="ml-auto">
-                                    <Link to={"/blog/" + firstPost.id}>Read More <ArrowRight /></Link>
+                                    <Link to={"/post/" + firstPost.id}>Read More <ArrowRight /></Link>
                                 </div>
                             </div>
                         </div>
@@ -115,11 +115,11 @@ const Blog = () => {
                             <div className="box">
                                 <div className="cont">
                                     <span className="date"><i className="fas fa-calendar-alt mr-10 main-color"></i>{p.date}</span>
-                                    <h5><Link to={"/blog/" + p.id}>{p.title}</Link></h5>
+                                    <h5><Link to={"/post/" + p.id}>{p.title}</Link></h5>
                                 </div>
                                 <div className="info d-flex align-items-center">
                                     <div className="ml-auto">
-                                        <Link to={"/blog/" + p.id}>Read More <ArrowRight /></Link>
+                                        <Link to={"/post/" + p.id}>Read More <ArrowRight /></Link>
                                     </div>
                                 </div>
                             </div>
@@ -131,14 +131,11 @@ const Blog = () => {
     );
 
     return (
-        <div className="container-fluid home">
-            <ContactButton />
-            <main className="container">
-                <NavBar />
-                <Main />
-                <List />
-            </main>
-        </div>
+        <>
+            <NavBar />
+            <Main />
+            <List />
+        </>
     );
 };
 

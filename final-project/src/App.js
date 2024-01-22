@@ -1,3 +1,4 @@
+import ContactButton from "components/ContactButton";
 import React from 'react';
 import './App.scss';
 import Footer from 'components/Footer';
@@ -12,7 +13,12 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Header />
-                <AppRouter />
+                <div className="container-fluid home">
+                    <ContactButton />
+                    <main className="container">
+                        <AppRouter />
+                    </main>
+                </div>
                 <Footer />
                 <ScrollToTop />
                 <ScrollToAnchor />

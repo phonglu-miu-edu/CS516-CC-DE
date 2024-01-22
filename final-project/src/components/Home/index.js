@@ -1,3 +1,6 @@
+import { getAllTestimonials } from "services/TestimonialService";
+import { getAllWorks } from "services/WorkService";
+import { getAllSkills } from "services/SkillService";
 import { getAllPosts } from "services/PostService";
 import ArrowRight from "components/ArrowRight";
 import ArrowSwipe from "components/ArrowSwipe";
@@ -5,98 +8,48 @@ import ArrowTopRight from "components/ArrowTopRight";
 import ContactButton from "components/ContactButton";
 import Introduction from "components/Introduction";
 import './index.scss';
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 const Home = () => {
+    const [skills, updateSkills] = useState([]);
+    const [testimonials, updateTestimonials] = useState([]);
+    const [works, updateWorks] = useState([]);
+    const sliderRef = useRef(null);
     const postState = useSelector(state => state.post);
+    const skillState = useSelector(state => state.skill);
+    const testimonialState = useSelector(state => state.testimonial);
+    const workState = useSelector(state => state.work);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllPosts());
+        dispatch(getAllSkills());
+        dispatch(getAllTestimonials());
+        dispatch(getAllWorks());
     }, [dispatch]);
 
-    const skills = [{
-        logo: 'assets/imgs/resume/csharp.png',
-        name: 'C#',
-        progress: '95%'
-    }, {
-        logo: 'assets/imgs/resume/aws.png',
-        name: 'AWS',
-        progress: '80%'
-    }, {
-        logo: 'assets/imgs/resume/microservice.png',
-        name: 'Microservice',
-        progress: '90%'
-    }, {
-        logo: 'assets/imgs/resume/react.png',
-        name: 'React',
-        progress: '90%'
-    }, {
-        logo: 'assets/imgs/resume/angular.png',
-        name: 'Angular',
-        progress: '85%'
-    }, {
-        logo: 'assets/imgs/resume/sqlserver.png',
-        name: 'SQL Server',
-        progress: '90%'
-    }, {
-        logo: 'assets/imgs/resume/mysql.png',
-        name: 'MySQL',
-        progress: '95%'
-    }, {
-        logo: 'assets/imgs/resume/postgre.png',
-        name: 'PostgreSQL',
-        progress: '80%'
-    }, {
-        logo: 'assets/imgs/resume/htmlcss.png',
-        name: 'HTML & CSS',
-        progress: '80%'
-    }];
+    useEffect(() => {
+        if (skillState.skills.length > 0) {
+            updateSkills(skillState.skills);
+        }
+    }, [skillState]);
 
-    const works = [{
-        image: 'assets/imgs/works/topenland.png',
-        name: 'Topenland',
-        link: 'https://topenland.com'
-    }, {
-        image: 'assets/imgs/works/vinhms.png',
-        name: 'VinHMS',
-        link: 'https://www.vinhms.com'
-    }, {
-        image: 'assets/imgs/works/s3co.png',
-        name: 'Simple Solutions',
-        link: 'https://www.s3co.vn'
-    }, {
-        image: 'assets/imgs/works/netpower.png',
-        name: 'Netpower',
-        link: 'https://www.netpower.vn'
-    }, {
-        image: 'assets/imgs/works/aaohcmut.png',
-        name: 'AAO - University of Technology',
-        link: 'http://aao.hcmut.edu.vn/'
-    }];
+    useEffect(() => {
+        if (testimonialState.testimonials.length > 0) {
+            updateTestimonials(testimonialState.testimonials);
+        }
+    }, [testimonialState]);
 
-    const testimonials = [{
-        image: 'assets/imgs/testim/hoatran.png',
-        text: 'Phong has great passion for programming and is very hard-working during the project. His expertise in the field of web technologies and microservices has helped us a lot. He is also a very nice guy to work with and I highly recommend him to any development project.',
-        author: 'Mr. Hoa Tran',
-        role: 'Head of Software Development | Technical Manager | Proptech | Digital Platform | Cloud Development'
-    }, {
-        image: 'assets/imgs/testim/hoangnguyen.png',
-        text: 'Phong was the leader of our development team, not only because of his experiences with back-end and front-end technologies but because of his commitment to high quality product release and his willingness to share knowledge with the team. Phong’s work was always reliable, but his biggest contribution was his ability to consistently improve the quality of everyone working with him, not just himself.',
-        author: 'Mr. Hoang Nguyen',
-        role: 'Leader | Founder | Entrepreneur'
-    }, {
-        image: 'assets/imgs/testim/minhnguyen.png',
-        text: 'I had known Phong for a long time before we joined for the first project related to online branding of Masters Association at University of Bolton (MAUB). The project includes website, integrated communication channels of MAUB and variety of designing works which require the project manager to have a wide range of skills to fulfill the tasks. After project completion, Phong also followed with us to maintain and support MAUB system for a whole year time although the service fee did not cover such work. He proved himself to be a responsible and trusted partner for IT & technology solution service which I strongly recommend to any of his future clients.',
-        author: 'Mr. Minh Nguyen',
-        role: 'Educator, Marketer | Chief of Knowledge at Wisdom Agency, CSO at Kim Ngan Group'
-    }];
-
-    const sliderRef = useRef(null);
+    useEffect(() => {
+        if (workState.works.length > 0) {
+            updateWorks(workState.works);
+        }
+    }, [workState]);
 
     const onSliderPrevClick = useCallback(() => {
         if (!sliderRef.current) return;
@@ -139,7 +92,7 @@ const Home = () => {
                 </div>
                 <div className="cont mt-30 d-flex align-items-center">
                     <div>
-                        <span className="tag">Branding</span>
+                        <span className="tag">{s.type}</span>
                         <h6 className="line-height-1">
                             <a href={s.link} target="_blank">{s.name}</a>
                         </h6>
@@ -160,9 +113,9 @@ const Home = () => {
         return (
             <Swiper
                 ref={sliderRef}
-                spaceBetween={50}
-                slidesPerView={1}
-                loop={true}
+                modules={[Autoplay]}
+                autoplay
+                loop
             >
                 {testimonials.map(s => (
                     <SwiperSlide key={s.image}>
@@ -247,7 +200,7 @@ const Home = () => {
             <div className="sec-head mb-80">
                 <div className="row justify-content-center">
                     <div className="col-lg-6 text-center">
-                    <h6 className="sub-title opacity-7 mb-15">My Services</h6>
+                        <h6 className="sub-title opacity-7 mb-15">My Services</h6>
                         <h3>Turn Ideas <span className="main-color">Into Reality</span></h3>
                     </div>
                 </div>
@@ -267,9 +220,9 @@ const Home = () => {
                 {/*</div>*/}
                 <div className="col-md-6">
                     <div className="item mb-40">
-                                    <span className="icon-img-70 mb-30 opacity-7">
-                                        <img src="assets/imgs/serv-img/2.png" alt="" />
-                                    </span>
+                        <span className="icon-img-70 mb-30 opacity-7">
+                            <img src="assets/imgs/serv-img/2.png" alt="" />
+                        </span>
                         <h6 className="text-u ls1 mb-15">Web Development</h6>
                         <p>Build <span className="main-color">highly scalable</span> systems to serve enable
                             global reach and shape the future of the internet.</p>
@@ -290,9 +243,9 @@ const Home = () => {
                 {/*</div>*/}
                 <div className="col-md-6">
                     <div className="item">
-                                    <span className="icon-img-70 mb-30 opacity-7">
-                                        <img src="assets/imgs/serv-img/4.png" alt="" />
-                                    </span>
+                        <span className="icon-img-70 mb-30 opacity-7">
+                            <img src="assets/imgs/serv-img/4.png" alt="" />
+                        </span>
                         <h6 className="text-u ls1 mb-15">Technology Solution</h6>
                         <p>Let's rewrite the rules of the tech game together. Embrace the extraordinary, and
                             watch <span className="main-color">your business</span> soar.</p>
@@ -461,7 +414,7 @@ const Home = () => {
             </div>
             <div className="row">
                 {postState.posts.map(p => (
-                    <div className="col-lg-4">
+                    <div className="col-lg-4" key={p.id}>
                         <div className="item md-mb30">
                             <div className="img">
                                 <img src={p.thumbnail} alt={p.title} />
@@ -469,11 +422,11 @@ const Home = () => {
                             <div className="box">
                                 <div className="cont">
                                     <span className="date"><i className="fas fa-calendar-alt mr-10 main-color"></i>{p.date}</span>
-                                    <h5><Link to={"/blog/" + p.id}>{p.title}</Link></h5>
+                                    <h5><Link to={"/post/" + p.id}>{p.title}</Link></h5>
                                 </div>
                                 <div className="info d-flex align-items-center">
                                     <div className="ml-auto">
-                                        <Link to={"/blog/" + p.id}>Read More <ArrowRight /></Link>
+                                        <Link to={"/post/" + p.id}>Read More <ArrowRight /></Link>
                                     </div>
                                 </div>
                             </div>
@@ -632,14 +585,12 @@ const Home = () => {
                             <div className="controls row">
                                 <div className="col-lg-4">
                                     <div className="form-group mb-30">
-                                        <input id="form_name" type="text" name="name" placeholder="Name"
-                                               required="required" />
+                                        <input id="form_name" type="text" name="name" placeholder="Name *" required="required" />
                                     </div>
                                 </div>
                                 <div className="col-lg-4">
                                     <div className="form-group mb-30">
-                                        <input id="form_email" type="email" name="email" placeholder="Email"
-                                               required="required" />
+                                        <input id="form_email" type="email" name="email" placeholder="Email *" required="required" />
                                     </div>
                                 </div>
                                 <div className="col-lg-4">
@@ -649,13 +600,12 @@ const Home = () => {
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group mb-30">
-                                        <input id="form_subject" type="text" name="subject" placeholder="Subject" />
+                                        <input id="form_subject" type="text" name="subject" placeholder="Subject *" />
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
-                                        <textarea id="form_message" name="message" placeholder="Message" rows="4"
-                                                  required="required"></textarea>
+                                        <textarea id="form_message" name="message" placeholder="Message *" rows="4" required="required"></textarea>
                                     </div>
                                     <div className="mt-30">
                                         <button type="submit">
@@ -672,22 +622,19 @@ const Home = () => {
     );
 
     return (
-        <div className="container-fluid home">
-            <ContactButton />
-            <main className="container">
-                <Introduction />
-                <NavBar />
-                <section className="in-box">
-                    <Services />
-                    <Skills />
-                    <Works />
-                    <Testimonials />
-                    <Blog />
-                    {/*<Price />*/}
-                    <Contact />
-                </section>
-            </main>
-        </div>
+        <>
+            <Introduction />
+            <NavBar />
+            <section className="in-box">
+                <Services />
+                <Skills />
+                <Works />
+                <Testimonials />
+                <Blog />
+                {/*<Price />*/}
+                <Contact />
+            </section>
+        </>
     );
 };
 
