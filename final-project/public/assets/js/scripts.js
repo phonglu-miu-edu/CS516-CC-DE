@@ -22,15 +22,15 @@ $(function () {
     ============================================================================= */
 
 
-    $.scrollIt({
-        upKey: 38,                // key code to navigate to the next section
-        downKey: 40,              // key code to navigate to the previous section
-        easing: 'swing',          // the easing function for animation
-        scrollTime: 600,          // how long (in ms) the animation takes
-        activeClass: 'active',    // class given to the active nav element
-        onPageChange: null,       // function(pageIndex) that is called when page is changed
-        topOffset: 0            // offste (in px) for fixed top navigation
-    });
+    // $.scrollIt({
+    //     upKey: 38,                // key code to navigate to the next section
+    //     downKey: 40,              // key code to navigate to the previous section
+    //     easing: 'swing',          // the easing function for animation
+    //     scrollTime: 600,          // how long (in ms) the animation takes
+    //     activeClass: 'active',    // class given to the active nav element
+    //     onPageChange: null,       // function(pageIndex) that is called when page is changed
+    //     topOffset: 0            // offste (in px) for fixed top navigation
+    // });
 
 
     /* =============================================================================
@@ -134,20 +134,20 @@ $(function () {
     -------------------------------  Progress Bar  ---------------------------------
     ============================================================================= */
 
-    wind.on('scroll', function () {
-        $(".skill-progress .progres").each(function () {
-            var bottom_of_object =
-                $(this).offset().top + $(this).outerHeight();
-            var bottom_of_window =
-                $(window).scrollTop() + $(window).height();
-            var myVal = $(this).attr('data-value');
-            if (bottom_of_window > bottom_of_object) {
-                $(this).css({
-                    width: myVal
-                });
-            }
-        });
-    });
+    // wind.on('scroll', function () {
+    //     $(".skill-progress .progres").each(function () {
+    //         var bottom_of_object =
+    //             $(this).offset().top + $(this).outerHeight();
+    //         var bottom_of_window =
+    //             $(window).scrollTop() + $(window).height();
+    //         var myVal = $(this).attr('data-value');
+    //         if (bottom_of_window > bottom_of_object) {
+    //             $(this).css({
+    //                 width: myVal
+    //             });
+    //         }
+    //     });
+    // });
 
 
     /* =============================================================================
@@ -317,31 +317,6 @@ $(window).on("load", function () {
     -----------------------------  Contact Valdition   -----------------------------
     ============================================================================= */
 
-    $('#contact-form').validator();
-
-    $('#contact-form').on('submit', function (e) {
-        if (!e.isDefaultPrevented()) {
-            var url = "contact.php";
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: $(this).serialize(),
-                success: function (data) {
-                    var messageAlert = 'alert-' + data.type;
-                    var messageText = data.message;
-
-                    var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
-                    if (messageAlert && messageText) {
-                        $('#contact-form').find('.messages').html(alertBox);
-                        $('#contact-form')[0].reset();
-                    }
-                }
-            });
-            return false;
-        }
-    });
-
 });
 
 
@@ -361,27 +336,29 @@ $(document).ready(function () {
     progressPath.getBoundingClientRect();
     progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
     var updateProgress = function () {
-        var scroll = $(window).scrollTop();
-        var height = $(document).height() - $(window).height();
-        var progress = pathLength - (scroll * pathLength / height);
-        progressPath.style.strokeDashoffset = progress;
+        // console.log('1');
+        //
+        // var scroll = $(window).scrollTop();
+        // var height = $(document).height() - $(window).height();
+        // var progress = pathLength - (scroll * pathLength / height);
+        // progressPath.style.strokeDashoffset = progress;
     }
     updateProgress();
-    $(window).scroll(updateProgress);
+    // $(window).scroll(updateProgress);
     var offset = 150;
     var duration = 550;
-    jQuery(window).on('scroll', function () {
-        if (jQuery(this).scrollTop() > offset) {
-            jQuery('.progress-wrap').addClass('active-progress');
-        } else {
-            jQuery('.progress-wrap').removeClass('active-progress');
-        }
-    });
-    jQuery('.progress-wrap').on('click', function (event) {
-        event.preventDefault();
-        jQuery('html, body').animate({ scrollTop: 0 }, duration);
-        return false;
-    })
+    // jQuery(window).on('scroll', function () {
+    //     if (jQuery(this).scrollTop() > offset) {
+    //         jQuery('.progress-wrap').addClass('active-progress');
+    //     } else {
+    //         jQuery('.progress-wrap').removeClass('active-progress');
+    //     }
+    // });
+    // jQuery('.progress-wrap').on('click', function (event) {
+    //     event.preventDefault();
+    //     jQuery('html, body').animate({ scrollTop: 0 }, duration);
+    //     return false;
+    // })
 
 });
 

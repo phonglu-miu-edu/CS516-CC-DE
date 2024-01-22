@@ -1,6 +1,5 @@
 import './index.scss';
 import ArrowRight from "components/ArrowRight";
-import ContactButton from "components/ContactButton";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";

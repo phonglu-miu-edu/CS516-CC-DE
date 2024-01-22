@@ -1,25 +1,34 @@
-import { getAllTestimonials } from "services/TestimonialService";
-import { getAllWorks } from "services/WorkService";
-import { getAllSkills } from "services/SkillService";
-import { getAllPosts } from "services/PostService";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import ArrowRight from "components/ArrowRight";
 import ArrowSwipe from "components/ArrowSwipe";
 import ArrowTopRight from "components/ArrowTopRight";
-import ContactButton from "components/ContactButton";
 import Introduction from "components/Introduction";
+import { resetContact } from "../../redux/slices/contactSlice";
+import { getAllPosts } from "services/PostService";
+import { getAllSkills } from "services/SkillService";
+import { getAllTestimonials } from "services/TestimonialService";
+import { getAllWorks } from "services/WorkService";
 import './index.scss';
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
 const Home = () => {
-    const [skills, updateSkills] = useState([]);
-    const [testimonials, updateTestimonials] = useState([]);
-    const [works, updateWorks] = useState([]);
+    const initialContact = {
+        sent: false
+    };
+
+    const [contact, setContact] = useState(initialContact);
+    const [posts, setPosts] = useState([]);
+    const [skills, setSkills] = useState([]);
+    const [testimonials, setTestimonials] = useState([]);
+    const [works, setWorks] = useState([]);
     const sliderRef = useRef(null);
+    const { register, formState: { errors }, handleSubmit } = useForm();
+    const contactState = useSelector(state => state.contact);
     const postState = useSelector(state => state.post);
     const skillState = useSelector(state => state.skill);
     const testimonialState = useSelector(state => state.testimonial);
@@ -34,20 +43,33 @@ const Home = () => {
     }, [dispatch]);
 
     useEffect(() => {
+        if (contactState.messageSent && contact.sent) {
+            setContact(initialContact);
+            resetContact();
+        }
+    }, [contactState]);
+
+    useEffect(() => {
+        if (postState.posts.length > 0) {
+            setPosts(postState.posts);
+        }
+    }, [postState]);
+
+    useEffect(() => {
         if (skillState.skills.length > 0) {
-            updateSkills(skillState.skills);
+            setSkills(skillState.skills);
         }
     }, [skillState]);
 
     useEffect(() => {
         if (testimonialState.testimonials.length > 0) {
-            updateTestimonials(testimonialState.testimonials);
+            setTestimonials(testimonialState.testimonials);
         }
     }, [testimonialState]);
 
     useEffect(() => {
         if (workState.works.length > 0) {
-            updateWorks(workState.works);
+            setWorks(workState.works);
         }
     }, [workState]);
 
@@ -60,6 +82,15 @@ const Home = () => {
         if (!sliderRef.current) return;
         sliderRef.current.swiper.slideNext();
     }, []);
+
+    const onInputChange = (e, name) => {
+        contact[name] = e.target.value;
+        setContact({ ...contact });
+    }
+
+    const onContactSubmit = data => {
+        console.log(data);
+    };
 
     const RenderedSkills = () => skills.map(s => (
         <div className="col-md-6" key={s.logo}>
@@ -162,6 +193,27 @@ const Home = () => {
         )
     };
 
+    const RenderedPosts = () => posts.map(p => (
+        <div className="col-lg-4" key={p.id}>
+            <div className="item md-mb30">
+                <div className="img">
+                    <img src={p.thumbnail} alt={p.title} />
+                </div>
+                <div className="box">
+                    <div className="cont">
+                        <span className="date"><i className="fas fa-calendar-alt mr-10 main-color"></i>{p.date}</span>
+                        <h5><Link to={"/post/" + p.id}>{p.title}</Link></h5>
+                    </div>
+                    <div className="info d-flex align-items-center">
+                        <div className="ml-auto">
+                            <Link to={"/post/" + p.id}>Read More <ArrowRight /></Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ));
+
     const NavBar = () => (
         <nav className="navbar">
             <div className="row justify-content-end rest">
@@ -195,7 +247,7 @@ const Home = () => {
     );
 
     const Services = () => (
-        <div className="sec-box services section-padding bord-thin-bottom" data-scroll-index="1">
+        <div className="sec-box services section-padding bord-thin-bottom">
             <a id="services" />
             <div className="sec-head mb-80">
                 <div className="row justify-content-center">
@@ -413,26 +465,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="row">
-                {postState.posts.map(p => (
-                    <div className="col-lg-4" key={p.id}>
-                        <div className="item md-mb30">
-                            <div className="img">
-                                <img src={p.thumbnail} alt={p.title} />
-                            </div>
-                            <div className="box">
-                                <div className="cont">
-                                    <span className="date"><i className="fas fa-calendar-alt mr-10 main-color"></i>{p.date}</span>
-                                    <h5><Link to={"/post/" + p.id}>{p.title}</Link></h5>
-                                </div>
-                                <div className="info d-flex align-items-center">
-                                    <div className="ml-auto">
-                                        <Link to={"/post/" + p.id}>Read More <ArrowRight /></Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                <RenderedPosts />
             </div>
         </div>
     );
@@ -580,32 +613,38 @@ const Home = () => {
                 </div>
                 <div className="col-lg-7 valign">
                     <div className="full-width">
-                        <form id="contact-form" method="post" action="contact.php">
-                            <div className="messages"></div>
+                        <form onSubmit={handleSubmit(onContactSubmit)}>
                             <div className="controls row">
                                 <div className="col-lg-4">
                                     <div className="form-group mb-30">
-                                        <input id="form_name" type="text" name="name" placeholder="Name *" required="required" />
+                                        <input {...register("name", { required: "Name is required" })} placeholder="Name *"
+                                                value={contact.name}
+                                                onChange={e => onInputChange(e, 'name')} />
+                                        {errors.name && <p role="alert">{errors.name.message}</p>}
                                     </div>
                                 </div>
                                 <div className="col-lg-4">
                                     <div className="form-group mb-30">
-                                        <input id="form_email" type="email" name="email" placeholder="Email *" required="required" />
+                                        <input type="email" {...register("mail", { required: "Email is required" })} placeholder="Email *" />
+                                        {errors.mail && <p role="alert">{errors.mail.message}</p>}
                                     </div>
                                 </div>
                                 <div className="col-lg-4">
                                     <div className="form-group mb-30">
-                                        <input id="form_phone" type="tel" name="phone" placeholder="xxx-xxx-xxxx" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" />
+                                        <input {...register("phone", { pattern: { value: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/i, message: "Invalid phone" }})} placeholder="xxx-xxx-xxxx" />
+                                        {errors.phone && <p role="alert">{errors.phone.message}</p>}
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group mb-30">
-                                        <input id="form_subject" type="text" name="subject" placeholder="Subject *" />
+                                        <input {...register("subject", { required: "Subject is required" })} placeholder="Subject *" />
+                                        {errors.subject && <p role="alert">{errors.subject.message}</p>}
                                     </div>
                                 </div>
                                 <div className="col-12">
                                     <div className="form-group">
-                                        <textarea id="form_message" name="message" placeholder="Message *" rows="4" required="required"></textarea>
+                                        <textarea {...register("message", { required: "Message is required" })} placeholder="Message *" rows="4"></textarea>
+                                        {errors.message && <p role="alert">{errors.message.message}</p>}
                                     </div>
                                     <div className="mt-30">
                                         <button type="submit">
@@ -622,7 +661,7 @@ const Home = () => {
     );
 
     return (
-        <>
+        <div>
             <Introduction />
             <NavBar />
             <section className="in-box">
@@ -634,7 +673,7 @@ const Home = () => {
                 {/*<Price />*/}
                 <Contact />
             </section>
-        </>
+        </div>
     );
 };
 
