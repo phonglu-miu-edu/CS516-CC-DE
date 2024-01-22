@@ -385,9 +385,7 @@ const Home = () => {
                     {/*</div>*/}
                 </div>
             </div>
-            <div>
-                <RenderedWorks />
-            </div>
+            <RenderedWorks />
         </div>
     );
 

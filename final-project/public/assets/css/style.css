@@ -2226,6 +2226,7 @@ body.loaded {
 .portfolio .item .cont h6 {
   font-weight: 500;
   display: inline;
+  vertical-align: middle;
 }
 
 .portfolio .item .cont .arrow svg {
@@ -4552,6 +4553,10 @@ p[role=alert] {
   color: #ff8787;
 }
 
-ul li > * {
+.portfolio ul li {
+  list-style: disc;
+}
+
+.portfolio ul li > * {
   vertical-align: text-top;
 }
