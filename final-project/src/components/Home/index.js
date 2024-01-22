@@ -90,27 +90,34 @@ const Home = () => {
     ));
 
     const RenderedWorks = () => works.map(s => (
-        <div className="col-lg-6 items" key={s.image}>
-            <div className="item mt-50">
-                <div className="img">
-                    <a href={s.link} target="_blank">
-                        <img src={s.image} alt={s.name} />
-                    </a>
-                </div>
-                <div className="cont mt-30 d-flex align-items-center">
-                    <div>
-                        <span className="tag">{s.type}</span>
-                        <h6 className="line-height-1">
-                            <a href={s.link} target="_blank">{s.name}</a>
-                        </h6>
+        <div className="row" key={s.id}>
+            <div className="col-lg-6 items">
+                <div className="item mt-50">
+                    <div className="img">
+                        <a href={s.link} target="_blank">
+                            <img src={s.image} alt={s.name} />
+                        </a>
                     </div>
-                    <div className="ml-auto">
-                        <div className="arrow">
-                            <a href={s.link} target="_blank">
-                                <ArrowTopRight />
-                            </a>
+                    <div className="cont mt-30 d-flex align-items-center">
+                        <div>
+                            <span className="tag">{s.type}</span>
+                            <h6 className="line-height-1">
+                                <a href={s.link} target="_blank">{s.name}</a>
+                            </h6>
+                        </div>
+                        <div className="ml-auto">
+                            <div className="arrow">
+                                <a href={s.link} target="_blank">
+                                    <ArrowTopRight />
+                                </a>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="col-lg-6 items">
+                <div className="item mt-50">
+                    { <div dangerouslySetInnerHTML={{ __html: s.description }} /> }
                 </div>
             </div>
         </div>
@@ -377,9 +384,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="gallery">
-                <div className="row">
-                    <RenderedWorks />
-                </div>
+                <RenderedWorks />
             </div>
         </div>
     );
