@@ -105,13 +105,15 @@ const Home = () => {
                                 <a href={s.link} target="_blank">{s.name}</a>
                             </h6>
                         </div>
-                        <div className="ml-auto">
-                            <div className="arrow">
-                                <a href={s.link} target="_blank">
-                                    <ArrowTopRight />
-                                </a>
+                        {s.link && s.link !== '#' && (
+                            <div className="ml-auto">
+                                <div className="arrow">
+                                    <a href={s.link} target="_blank">
+                                        <ArrowTopRight />
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -212,7 +214,7 @@ const Home = () => {
                             <Link to="/#skills"><span>Skills</span></Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/#works"><span>Portfolio</span></Link>
+                            <Link to="/#works"><span>Experiences</span></Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/#blog"><span>Blog</span></Link>
@@ -371,7 +373,7 @@ const Home = () => {
             <div className="sec-head mb-30">
                 <div className="row">
                     <div className="col-lg-6">
-                        <h6 className="sub-title opacity-7 mb-15">My Portfolio</h6>
+                        <h6 className="sub-title opacity-7 mb-15">My Experiences</h6>
                         <h3>Look at my work & <br /> give me <span className="main-color">your feedback</span></h3>
                     </div>
                     {/*<div className="col-lg-6 valign">*/}

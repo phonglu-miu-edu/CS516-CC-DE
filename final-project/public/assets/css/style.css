@@ -4551,3 +4551,7 @@ img.left {
 p[role=alert] {
   color: #ff8787;
 }
+
+ul li > * {
+  vertical-align: text-top;
+}

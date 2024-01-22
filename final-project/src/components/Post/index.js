@@ -43,7 +43,7 @@ const Post = () => {
                                             <Link to="/#skills"><span>Skills</span></Link>
                                         </li>
                                         <li className="nav-item">
-                                            <Link to="/#works"><span>Portfolio</span></Link>
+                                            <Link to="/#works"><span>Experiences</span></Link>
                                         </li>
                                         {/*<li className="nav-item">*/}
                                         {/*    <Link to="/#price"><span>Price</span></Link>*/}
