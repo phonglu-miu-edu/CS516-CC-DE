@@ -1,5 +1,15 @@
+# PORTFOLIO
+
+
+
+# CHANGE LOGS
+
+## 01/23/2024
+- Add Architect description.
+
 ## 01/22/2024
 - Complete the Contact form with validation and response feedback.
+- Add Posts.
 
 ## 01/21/2024
 - Move Home data to Api.
