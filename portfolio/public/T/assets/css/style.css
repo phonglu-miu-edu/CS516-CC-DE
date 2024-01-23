@@ -282,7 +282,7 @@ img {
 
 /* Buttons
 -----------------------------------------------------------------*/
-.contact-fixed-butn {
+.contact-fixed-button {
   position: fixed;
   left: -20px;
   bottom: 120px;
@@ -291,45 +291,45 @@ img {
   transform: rotate(90deg) translateY(50%);
 }
 
-.contact-fixed-butn .butn {
+.contact-fixed-button .button {
   border-radius: 5px 5px 0 0;
 }
 
-.butn-presv {
+.button-presv {
   -webkit-perspective: 500px;
   perspective: 500px;
 }
 
-.butn-presv .skew {
+.button-presv .skew {
   -webkit-transform: rotateX(20deg);
   transform: rotateX(20deg);
 }
 
-.butn-presv .skew:hover {
+.button-presv .skew:hover {
   -webkit-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
 
-.butn {
+.button {
   border: 1px solid transparent;
 }
 
-.butn.butn-md {
+.button.button-md {
   padding: 14px 35px;
 }
 
-.butn.butn-sm {
+.button.button-sm {
   padding: 13px 30px;
   font-size: 13px;
 }
 
-.butn.butn-full {
+.button.button-full {
   width: 100%;
   padding: 15px 25px;
   text-align: center;
 }
 
-.butn.butn-bord {
+.button.button-bord {
   border-color: #fff;
   background: transparent;
   color: #fff;
@@ -338,46 +338,46 @@ img {
   transition: all .4s;
 }
 
-.butn.butn-bord:hover {
+.button.button-bord:hover {
   background: #fff;
   color: #000;
 }
 
-.butn.butn-bord:hover span {
+.button.button-bord:hover span {
   color: #000;
 }
 
-.butn.butn-bg {
+.button.button-bg {
   -webkit-transition: all .4s;
   -o-transition: all .4s;
   transition: all .4s;
 }
 
-.butn.butn-bg:hover {
+.button.button-bg:hover {
   background: transparent !important;
   border-color: #fff;
   color: #fff !important;
 }
 
-.butn.butn-bg:hover .text-dark {
+.button.button-bg:hover .text-dark {
   color: #fff !important;
 }
 
-.butn.hover-color:hover {
+.button.hover-color:hover {
   background: var(--maincolor);
   border-color: var(--maincolor);
 }
 
-.butn.hover-color:hover img {
+.button.hover-color:hover img {
   -webkit-filter: invert(1);
   filter: invert(1);
 }
 
-.butn .icon-img {
+.button .icon-img {
   width: 15px;
 }
 
-.butn .rolling-text {
+.button .rolling-text {
   margin-bottom: -5px;
 }
 
@@ -433,7 +433,7 @@ img {
   height: 50px;
 }
 
-.rolling-text.butn {
+.rolling-text.button {
   padding: 0 35px;
 }
 
@@ -1189,7 +1189,7 @@ body.loaded {
   position: relative;
 }
 
-.nav-top .container .nav-butn {
+.nav-top .container .nav-button {
   position: absolute;
   top: 0;
   right: 15px;
@@ -1714,13 +1714,13 @@ body.loaded {
   margin-left: 30px;
 }
 
-.comments-post .item-box .replay-butn {
+.comments-post .item-box .replay-button {
   position: absolute;
   top: 15px;
   right: 15px;
 }
 
-.comments-post .item-box .replay-butn a {
+.comments-post .item-box .replay-button a {
   font-size: 13px;
   padding: 8px 20px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -1730,7 +1730,7 @@ body.loaded {
   transition: all .4s;
 }
 
-.comments-post .item-box .replay-butn a:hover {
+.comments-post .item-box .replay-button a:hover {
   background: var(--maincolor);
   color: #1d1d1d;
 }
@@ -4239,7 +4239,7 @@ img.left {
   .fz-55 {
     font-size: 35px !important;
   }
-  .butn-presv .skew {
+  .button-presv .skew {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
@@ -4290,10 +4290,10 @@ img.left {
     padding: 40px 0;
     top: 40px;
   }
-  .nav-top .nav-butn {
+  .nav-top .nav-button {
     display: block !important;
   }
-  .contact-fixed-butn,
+  .contact-fixed-button,
   .intro-profile .content:after {
     display: none;
   }

@@ -490,8 +490,8 @@ const Home = () => {
                                 </ul>
                             </div>
                             <div className="text-center mt-50">
-                                <div className="butn-presv">
-                                    <a href="#" className="butn butn-md butn-bord radius-5 text-u full-width">
+                                <div className="button-presv">
+                                    <a href="#" className="button button-md button-bord radius-5 text-u full-width">
                                         <span>Get Started</span>
                                     </a>
                                 </div>
@@ -526,8 +526,8 @@ const Home = () => {
                                 </ul>
                             </div>
                             <div className="text-center mt-50">
-                                <div className="butn-presv">
-                                    <a href="#" className="butn butn-md butn-bord radius-5 text-u full-width">
+                                <div className="button-presv">
+                                    <a href="#" className="button button-md button-bord radius-5 text-u full-width">
                                         <span>Get Started</span>
                                     </a>
                                 </div>
@@ -560,8 +560,8 @@ const Home = () => {
                                 </ul>
                             </div>
                             <div className="text-center mt-50">
-                                <div className="butn-presv">
-                                    <a href="#" className="butn butn-md butn-bord radius-5 text-u full-width">
+                                <div className="button-presv">
+                                    <a href="#" className="button button-md button-bord radius-5 text-u full-width">
                                         <span>Get Started</span>
                                     </a>
                                 </div>

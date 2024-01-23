@@ -3,18 +3,18 @@
 /* Buttons
 -----------------------------------------------------------------*/
 
-.contact-fixed-butn{
+.contact-fixed-button{
     position: fixed;
     left: -20px;
     bottom: 120px;
     transform: rotate(90deg) translateY(50%);
 
-    .butn{
+    .button{
         border-radius: 5px 5px 0 0;
     }
 }
 
-.butn-presv{
+.button-presv{
     perspective: 500px;
 
     .skew{
@@ -26,25 +26,25 @@
     }
 }
 
-.butn{
+.button{
     border: 1px solid transparent;
 
-    &.butn-md{
+    &.button-md{
         padding: 14px 35px;
     }
 
-    &.butn-sm{
+    &.button-sm{
         padding: 13px 30px;
         font-size: 13px;
     }
 
-    &.butn-full{
+    &.button-full{
       width: 100%;
       padding: 15px 25px;
       text-align: center;
     }
 
-    &.butn-bord{
+    &.button-bord{
         border-color: #fff;
         background: transparent;
         color: #fff;
@@ -60,7 +60,7 @@
         }
     }
 
-    &.butn-bg{
+    &.button-bg{
         transition: all .4s;
         
         &:hover{

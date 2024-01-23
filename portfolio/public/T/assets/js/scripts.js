@@ -37,7 +37,7 @@ $(function () {
     --------------------------------  Navbar Menu   --------------------------------
     ============================================================================= */
 
-    $(".nav-top").on("click", ".nav-butn", function () {
+    $(".nav-top").on("click", ".nav-button", function () {
 
         $(".navbar").slideToggle() .addClass("active");
     });

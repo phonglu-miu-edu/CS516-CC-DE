@@ -54,8 +54,8 @@ const Introduction = () => {
                             {/*    </div>*/}
                             {/*</div>*/}
                             <div>
-                                <div className="butn-presv">
-                                    <a href="/assets/docs/Phong.Lu-Resume.docx" className="butn butn-md butn-bord radius-5 skew">
+                                <div className="button-presv">
+                                    <a href="/assets/docs/Phong.Lu-Resume.docx" className="button button-md button-bord radius-5 skew">
                                         <span>Download C.V</span>
                                     </a>
                                 </div>

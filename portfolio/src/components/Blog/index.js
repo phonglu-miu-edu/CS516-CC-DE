@@ -54,7 +54,7 @@ const Blog = () => {
                         </div>
                     </div>
                 </div>
-                <div className="nav-butn">
+                <div className="nav-button">
                     <span className="pe-7s-menu"></span>
                 </div>
             </div>
