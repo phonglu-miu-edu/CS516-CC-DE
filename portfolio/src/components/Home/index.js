@@ -92,7 +92,7 @@ const Home = () => {
     const RenderedWorks = () => works.map(s => (
         <div className="row" key={s.id}>
             <div className="col-lg-6 items">
-                <div className="item mt-50">
+                <div className="item mt-50 wow fadeInUp">
                     <div className="img">
                         <a href={s.link} target="_blank">
                             <img src={s.image} alt={s.name} />
@@ -118,7 +118,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="col-lg-6 items">
-                <div className="item mt-50">
+                <div className="item mt-50 wow fadeInUp">
                     { <div dangerouslySetInnerHTML={{ __html: s.description }} /> }
                 </div>
             </div>
@@ -180,7 +180,7 @@ const Home = () => {
 
     const RenderedPosts = () => posts.map(p => (
         <div className="col-lg-4" key={p.id}>
-            <div className="item md-mb30">
+            <div className="item md-mb30 wow fadeIn">
                 <div className="img">
                     <img src={p.thumbnail} alt={p.title} />
                 </div>
@@ -234,7 +234,7 @@ const Home = () => {
     const Services = () => (
         <div className="sec-box services section-padding bord-thin-bottom">
             <a id="services" />
-            <div className="sec-head mb-80">
+            <div className="sec-head mb-80 wow fadeInUp">
                 <div className="row justify-content-center">
                     <div className="col-lg-6 text-center">
                         <h6 className="sub-title opacity-7 mb-15">My Services</h6>
@@ -256,7 +256,7 @@ const Home = () => {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div className="col-md-6">
-                    <div className="item mb-40">
+                    <div className="item mb-40 wow fadeIn">
                         <span className="icon-img-70 mb-30 opacity-7">
                             <img src="assets/imgs/serv-img/2.png" alt="" />
                         </span>
@@ -298,7 +298,7 @@ const Home = () => {
             <a id="skills" />
             <div className="row">
                 <div className="col-lg-4">
-                    <div className="sec-head md-mb80">
+                    <div className="sec-head md-mb80 wow fadeIn">
                         <h6 className="sub-title opacity-7 mb-15">My Skills</h6>
                         <h3><span className="main-color">Awards</span> & Recognitions</h3>
                     </div>
@@ -393,7 +393,7 @@ const Home = () => {
         <div className="sec-box testimonials section-padding">
             <a id="testimonials" />
             <div className="pad-left">
-                <div className="sec-head mb-80">
+                <div className="sec-head mb-80 wow fadeInUp">
                     <div className="row">
                         <div className="col-lg-7">
                             <h6 className="sub-title opacity-7 mb-15">Testimonials</h6>
@@ -403,7 +403,9 @@ const Home = () => {
                 </div>
                 <div className="row">
                     <div className="col-12">
-                        <RenderedTestimonials />
+                        <div className="testim-swiper wow fadeIn">
+                            <RenderedTestimonials />
+                        </div>
                     </div>
                     <div className="col-12 d-flex align-items-end justify-content-end">
                         <div className="swiper-controls testim-controls arrow-out d-flex mr-20 ml-auto">
@@ -432,7 +434,7 @@ const Home = () => {
             <a id="blog" />
             <div className="sec-head mb-80">
                 <div className="row">
-                    <div className="col-lg-6">
+                    <div className="col-lg-6 wow fadeInUp">
                         <h6 className="sub-title opacity-7 mb-15">My Blog</h6>
                         <h3>Latest News & <span className="main-color">Blog</span></h3>
                     </div>
@@ -576,7 +578,7 @@ const Home = () => {
             <a id="contact" />
             <div className="row">
                 <div className="col-lg-5">
-                    <div className="sec-head md-mb80">
+                    <div className="sec-head md-mb80 wow fadeIn">
                         <h6 className="sub-title mb-15 opacity-7">Get In Touch</h6>
                         <h2 className="fz-50">Let's make your brand brilliant!</h2>
                         <p className="fz-15 mt-10">If you would like to work with me or just want to get in
@@ -593,7 +595,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="col-lg-7 valign">
-                    <div className="full-width">
+                    <div className="full-width wow fadeIn">
                         <ContactForm />
                     </div>
                 </div>
