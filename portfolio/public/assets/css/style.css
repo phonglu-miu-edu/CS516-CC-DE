@@ -1410,11 +1410,17 @@ body.loaded {
 .blog .item {
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .blog .item .img {
   border-radius: 5px 5px 0 0;
   overflow: hidden;
+
+  img {
+    height: 250px;
+    object-fit: cover;
+  }
 }
 
 .blog .item .box {
@@ -2211,20 +2217,20 @@ body.loaded {
 .portfolio .item .cont .tag {
   font-size: 12px;
   padding: 4px 15px;
-  margin-right: 15px;
+  margin-right: 10px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   -webkit-transition: all .4s;
   -o-transition: all .4s;
   transition: all .4s;
-  display: inline;
 }
 
 .portfolio .item .cont h6 {
   font-weight: 500;
   display: inline;
   vertical-align: middle;
+  margin-right: 10px;
 }
 
 .portfolio .item .cont .arrow svg {

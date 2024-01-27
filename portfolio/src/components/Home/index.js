@@ -100,10 +100,14 @@ const Home = () => {
                     </div>
                     <div className="cont mt-30 d-flex align-items-center">
                         <div>
-                            <span className="tag">{s.type}</span>
-                            <h6 className="line-height-1">
-                                <a href={s.link} target="_blank">{s.name}</a>
-                            </h6>
+                            {/*<h6 className="line-height-1">*/}
+                            {/*    <a href={s.link} target="_blank">{s.name}</a>*/}
+                            {/*</h6>*/}
+                            {s.technologies && s.technologies.map(c => (
+                                <>
+                                    <span className="tag">{c}</span>
+                                </>
+                            ))}
                         </div>
                         {s.link && s.link !== '#' && (
                             <div className="ml-auto">
@@ -119,7 +123,7 @@ const Home = () => {
             </div>
             <div className="col-lg-6 items">
                 <div className="item mt-50 wow fadeInUp">
-                    { <div dangerouslySetInnerHTML={{ __html: s.description }} /> }
+                    {<div dangerouslySetInnerHTML={{ __html: s.description }} /> }
                 </div>
             </div>
         </div>
