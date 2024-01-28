@@ -1,8 +1,9 @@
 # PORTFOLIO
 
-
-
 # CHANGE LOGS
+
+## 01/28/2024
+- Add Education.
 
 ## 01/23/2024
 - Add Architect description.
