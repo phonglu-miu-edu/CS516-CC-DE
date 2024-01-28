@@ -7,6 +7,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllPosts } from "services/PostService";
+import { getAllEducations } from "services/EducationService";
 import { getAllSkills } from "services/SkillService";
 import { getAllTestimonials } from "services/TestimonialService";
 import { getAllWorks } from "services/WorkService";
@@ -17,11 +18,13 @@ import 'swiper/css';
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
+    const [educations, setEducations] = useState([]);
     const [skills, setSkills] = useState([]);
     const [testimonials, setTestimonials] = useState([]);
     const [works, setWorks] = useState([]);
     const sliderRef = useRef(null);
     const postState = useSelector(state => state.post);
+    const educationState = useSelector(state => state.education);
     const skillState = useSelector(state => state.skill);
     const testimonialState = useSelector(state => state.testimonial);
     const workState = useSelector(state => state.work);
@@ -29,6 +32,7 @@ const Home = () => {
 
     useEffect(() => {
         dispatch(getAllPosts());
+        dispatch(getAllEducations());
         dispatch(getAllSkills());
         dispatch(getAllTestimonials());
         dispatch(getAllWorks());
@@ -39,6 +43,12 @@ const Home = () => {
             setPosts(postState.posts);
         }
     }, [postState]);
+
+    useEffect(() => {
+        if (educationState.educations.length > 0) {
+            setEducations(educationState.educations);
+        }
+    }, [educationState]);
 
     useEffect(() => {
         if (skillState.skills.length > 0) {
@@ -85,6 +95,38 @@ const Home = () => {
                 {/*    <span className="progres" data-value={s.progress}></span>*/}
                 {/*</div>*/}
                 {/*<span className="value">{s.progress}</span>*/}
+            </div>
+        </div>
+    ));
+
+    const RenderedEducations = () => educations.map(s => (
+        <div className="col-lg-6 valign-t">
+            <div className="item full-width md-mb50">
+                <div className="top-curv">
+                    <span className="left"></span>
+                    <h6 className="type">{s.level}</h6>
+                    <span className="right"></span>
+                </div>
+                <div className="content">
+                    <div className="amount align-items-end pb-50 mb-50 bord-thin-bottom">
+                        <h2 className="main-color">{s.name}</h2>
+                        <p className="ml-20 fz-20">{s.year}</p>
+                    </div>
+                    <div className="feat">
+                        <ul className="rest">
+                            {s.courses && s.courses.map(c => (
+                                <li><i className="fas fa-check"></i> <span>{c}</span></li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="text-center mt-50">
+                        <div className="button-presv">
+                            <a href={s.link} target="_blank" className="button button-md button-bord radius-5 text-u full-width">
+                                <span>{s.full}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     ));
@@ -219,6 +261,9 @@ const Home = () => {
                         </li>
                         <li className="nav-item">
                             <Link to="/#experiences"><span>Experiences</span></Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/#educations"><span>Educations</span></Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/#blog"><span>Blog</span></Link>
@@ -372,7 +417,7 @@ const Home = () => {
     );
 
     const Works = () => (
-        <div className="sec-box portfolio section-padding" data-scroll-index="3">
+        <div className="sec-box portfolio section-padding bord-thin-bottom" data-scroll-index="3">
             <a id="experiences" />
             <div className="sec-head mb-30">
                 <div className="row">
@@ -390,6 +435,23 @@ const Home = () => {
                 </div>
             </div>
             <RenderedWorks />
+        </div>
+    );
+
+    const Educations = () => (
+        <div className="sec-box price section-padding" data-scroll-index="4">
+            <a id="educations" />
+            <div className="sec-head mb-80">
+                <div className="row justify-content-center">
+                    <div className="col-lg-6 text-center">
+                        {/*<h6 className="sub-title opacity-7 mb-15">Best Pricing</h6>*/}
+                        <h3>My <span className="main-color">Education</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div className="row md-marg">
+                <RenderedEducations />
+            </div>
         </div>
     );
 
@@ -413,12 +475,14 @@ const Home = () => {
                     </div>
                     <div className="col-12 d-flex align-items-end justify-content-end">
                         <div className="swiper-controls testim-controls arrow-out d-flex mr-20 ml-auto">
-                            <div onClick={onSliderPrevClick} className="swiper-button-prev" tabIndex="0" role="button" aria-label="Previous slide" aria-disabled="true">
+                            <div onClick={onSliderPrevClick} className="swiper-button-prev" tabIndex="0" role="button"
+                                 aria-label="Previous slide" aria-disabled="true">
                                 <span className="left">
                                     <ArrowSwipe />
                                 </span>
                             </div>
-                            <div onClick={onSliderNextClick} className="swiper-button-next ml-50" tabIndex="0" role="button" aria-label="Next slide" aria-disabled="false">
+                            <div onClick={onSliderNextClick} className="swiper-button-next ml-50" tabIndex="0"
+                                 role="button" aria-label="Next slide" aria-disabled="false">
                                 <span className="right">
                                     <ArrowSwipe />
                                 </span>
@@ -434,7 +498,7 @@ const Home = () => {
     );
 
     const Blog = () => (
-        <div className="sec-box blog section-padding bord-thin-top" data-scroll-index="6">
+        <div className="sec-box blog section-padding" data-scroll-index="6">
             <a id="blog" />
             <div className="sec-head mb-80">
                 <div className="row">
@@ -518,7 +582,7 @@ const Home = () => {
                             </div>
                             <div className="feat">
                                 <ul className="rest">
-                                    <li><i className="fas fa-check"></i> <span>Need your wireframe</span>
+                                <li><i className="fas fa-check"></i> <span>Need your wireframe</span>
                                     </li>
                                     <li><i className="fas fa-check"></i>
                                         <span>Design with Figma, Framer</span></li>
@@ -615,6 +679,7 @@ const Home = () => {
                 <Services />
                 <Skills />
                 <Works />
+                <Educations />
                 <Testimonials />
                 <Blog />
                 {/*<Price />*/}

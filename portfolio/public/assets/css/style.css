@@ -1836,6 +1836,10 @@ body.loaded {
   fill: currentColor;
 }
 
+.skills {
+  border-radius: 0 0 0 30px;
+}
+
 .skills .item {
   padding: 30px 30px 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -2170,7 +2174,7 @@ body.loaded {
 /* Portfolio
 -----------------------------------------------------------------*/
 .portfolio {
-  border-radius: 0 0 30px 0;
+  border-radius: 30px 0 30px 0;
 }
 
 .portfolio .item .img {
@@ -2354,6 +2358,10 @@ body.loaded {
   text-transform: uppercase;
   background: #c8f31d;
   border-radius: 30px;
+}
+
+.price .item .content .amount p {
+  display: block;
 }
 
 .price .item .content .feat li {
